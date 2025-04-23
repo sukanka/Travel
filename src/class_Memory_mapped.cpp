@@ -29,7 +29,7 @@ Memory_mapped::~Memory_mapped()
     bool status = unmap();
     if (!status)
     {
-        Rf_warning(error_msg.c_str());
+      Rf_warning("%s", error_msg.c_str());
     }
 }
 #ifndef _WIN32

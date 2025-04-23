@@ -211,7 +211,7 @@ void stop_filesystem_thread()
     std::string status = unmap_all_files();
     if (status != "")
     {
-      Rf_warning(status.c_str());
+      Rf_warning("%s",status.c_str());
     }
     sleep(100);
     //stop the filesystem

@@ -23,7 +23,7 @@ static void altmmap_handle_finalizer(SEXP handle_extptr)
         bool status = handle->unmap();
         if (!status)
         {
-            Rprintf(handle->get_last_error().c_str());
+          Rprintf("%s", handle->get_last_error().c_str());
         }
     }
     unregister_file_handle(handle);
@@ -58,7 +58,7 @@ SEXP Travel_make_altmmap(Filesystem_file_identifier &file_info)
     if (!handle->is_mapped())
     {
         remove_filesystem_file(file_info.file_name);
-        Rf_warning(handle->get_last_error().c_str());
+        Rf_warning("%s",handle->get_last_error().c_str());
         delete handle;
         return R_NilValue;
     }
@@ -94,7 +94,7 @@ static void altfile_handle_finalizer(SEXP handle_extptr)
         bool status = handle->unmap();
         if (!status)
         {
-            Rf_warning(handle->get_last_error().c_str());
+            Rf_warning("%s",handle->get_last_error().c_str());
         }
     }
     delete handle;
@@ -120,7 +120,7 @@ SEXP make_altmmap_from_file(std::string path, int type, size_t length)
     Memory_mapped *handle= new Memory_mapped(file_info.file_full_path, size);
     if (!handle->is_mapped())
     {
-        Rf_warning(handle->get_last_error().c_str());
+        Rf_warning("%s",handle->get_last_error().c_str());
         delete handle;
         return R_NilValue;
     }
@@ -149,6 +149,6 @@ void flush_altrep(SEXP x)
     bool status = handle->flush();
     if (!status)
     {
-        Rf_warning(handle->get_last_error().c_str());
+        Rf_warning("%s",handle->get_last_error().c_str());
     }
 }
