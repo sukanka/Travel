@@ -4,6 +4,7 @@
 A copy-on-write shared pointer implementation.
 It is used to keep track of the changes of a file
 */
+#include <cstddef>
 class Cache_block
 {
 private:

@@ -3,7 +3,7 @@
 
 #define STRINGIZING(x) #x
 #define XSTR(x) STRINGIZING(x)
-
+#include <cstdint>
 #include <stdexcept>
 #define throw_if_not_msg(x) throw std::runtime_error("The condition <" XSTR(x) "> Does not meet at line number "\
  XSTR(__LINE__)" in file <" __FILE__">")
